@@ -1,0 +1,16 @@
+---
+- name: update apt cache
+  command: apt-get update -y
+  tags: update_apt_cache
+
+- name: upgrade linux kernel
+  command: apt-get dist-upgrade -y
+  tags: upgrade_linux_kernel
+
+- name: upgrade all packages
+  command: apt-get upgrade -y
+  tags: upgrade_packages
+
+- name: autoremove obsolete packages
+  command: apt-get autoremove -y
+  tags: auto_remove_packages

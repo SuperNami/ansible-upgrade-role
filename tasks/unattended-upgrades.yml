@@ -1,0 +1,31 @@
+---
+- name: install packages
+  apt:  pkg={{ item }}
+        update_cache=yes
+        state=present
+  
+  with_items:
+  - mailutils
+  - unattended-upgrades
+
+
+- name: copy 10periodic configuration file
+  template: src=10periodic.j2
+            dest=/etc/apt/apt.conf.d/10periodic
+            backup=yes
+
+
+- name: copy 20auto-upgrades configuration file
+  template: src=20auto-upgrades
+            dest=/etc/apt/apt.conf.d/20auto-upgrades
+            owner=root
+            group=root
+            mode=644
+
+
+- name: copy 50unattended-upgrades configuration file
+  template: src=50unattended-upgrades.j2
+            dest=/etc/apt/apt.conf.d/50unattended-upgrades 
+            owner=root
+            group=root
+            mode=644
